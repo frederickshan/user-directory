@@ -1,30 +1,44 @@
 <template>
-  <div id="app">
-    <Header></Header>
-    <router-view></router-view>
-    <Footer></Footer>
-  </div>
+	<div id="app">
+		<header class="header">
+			<nav class="container navbar">
+				<div class="navbar-brand">
+					<img alt="Logo" src="./assets/logo.png">
+				</div>
+			</nav>
+		</header>
+
+		<router-view></router-view>
+
+
+		<footer class="footer">
+			<div class="content has-text-centered">
+				<p>&copy; 2019 Shannon Frederick</p>
+			</div>
+		</footer>
+	</div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
+import axios from "axios"
 
 export default {
-  components: {
-    Header,
-    Footer
-  }
+	created() {
+		axios.get("https://randomuser.me/api/")
+	}
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.header {
+	border-bottom: 1px solid #eee;
+}
+
+.footer {
+	background-color: #eee;
 }
 </style>
