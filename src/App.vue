@@ -8,8 +8,11 @@
 			</nav>
 		</header>
 
-		<router-view></router-view>
+		<section>
+			<p>users.gender</p>
+		</section>
 
+		<router-view></router-view>
 
 		<footer class="footer">
 			<div class="content has-text-centered">
@@ -23,8 +26,17 @@
 import axios from "axios"
 
 export default {
-	created() {
-		axios.get("https://randomuser.me/api/")
+	data() {
+		return {
+			users: []
+		}
+	},
+	async created() {
+		const { data: { results } } = await axios.get("https://randomuser.me/api/?results=50")
+
+		this.users = results;
+
+		console.log(results); // eslint-disable-line
 	}
 }
 </script>
