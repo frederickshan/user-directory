@@ -4,7 +4,7 @@
 			<div class="rows has-text-centered">
 				<article class="introduction row is-full">
 					<p><strong>Welcome to Dir</strong>, a directory of users.</p>
-					<p>Click the button below to view our user results.</p>
+					<p>Click the button below to view the user results.</p>
 				</article>
 
 				<div class="row is-full">
