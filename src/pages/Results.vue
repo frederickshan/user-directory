@@ -6,7 +6,7 @@
 			<UserTile :users="users"/>
 
 			<Pagination
-				v-bind:page.sync="page"
+				:page="page"
 				@nextPage="getNextPage"
 				@prevPage="getPrevPage"
 			/>
