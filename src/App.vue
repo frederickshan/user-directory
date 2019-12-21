@@ -8,10 +8,6 @@
 			</nav>
 		</header>
 
-		<section>
-			<p>users.gender</p>
-		</section>
-
 		<router-view></router-view>
 
 		<footer class="footer">
@@ -22,28 +18,13 @@
 	</div>
 </template>
 
-<script>
-import axios from "axios"
-
-export default {
-	data() {
-		return {
-			users: []
-		}
-	},
-	async created() {
-		const { data: { results } } = await axios.get("https://randomuser.me/api/?results=50")
-
-		this.users = results;
-
-		console.log(results); // eslint-disable-line
-	}
-}
-</script>
-
-<style>
+<style lang="scss">
 #app {
 	font-family: 'Quicksand', sans-serif;
+}
+
+.button {
+	font-weight: 700;
 }
 
 .header {
