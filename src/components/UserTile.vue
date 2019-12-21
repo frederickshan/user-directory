@@ -2,7 +2,6 @@
 	<div class="columns is-centered">
 		<div class="column tile is-parent is-vertical is-three-fifths">
 			<div class="columns tile is-child box has-text-centered-touch" v-for="user in users" :key="user.id.value">
-
 				<div class="column is-narrow">
 					<img :alt="`${user.name.first} ${user.name.last} Image`"
 					:src="user.picture.large"/>
