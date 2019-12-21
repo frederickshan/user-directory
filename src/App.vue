@@ -8,7 +8,9 @@
 			</nav>
 		</header>
 
-		<router-view></router-view>
+		<main class="main">
+			<router-view></router-view>
+		</main>
 
 		<footer class="footer">
 			<div class="content has-text-centered">
@@ -21,17 +23,28 @@
 <style lang="scss">
 #app {
 	font-family: 'Quicksand', sans-serif;
-}
-
-.button {
-	font-weight: 700;
+	display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 .header {
 	border-bottom: 1px solid #eee;
 }
 
+.main {
+	flex: 1;
+}
+
 .footer {
 	background-color: #eee;
+}
+
+.button {
+	font-weight: 700;
+}
+
+.capitalize {
+	text-transform: capitalize;
 }
 </style>

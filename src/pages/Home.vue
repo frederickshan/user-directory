@@ -1,14 +1,14 @@
 <template>
 	<section class="section">
 		<div class="container">
-			<div class="rows has-text-centered" >
-				<div class="row is-full introduction">
+			<div class="rows has-text-centered">
+				<article class="row is-full introduction">
 					<p><strong>Welcome to Dir</strong>, a directory of users.</p>
 					<p>Click the button below to view our user results.</p>
-				</div>
+				</article>
 
 				<div class="row is-full">
-					<router-link class="button is-light is-medium" to="/results">
+					<router-link class="capitalize button is-light" to="/results">
 						View Results
 					</router-link>
 				</div>
