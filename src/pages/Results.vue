@@ -1,27 +1,35 @@
 <template>
 	<section class="section">
 		<div class="container">
-			<a v-on:click="downloadCSV" class="button is-light">
-				Export to CSV
-			</a>
-
-			<div class="tile is-parent" v-for="user in users" :key="user.id.value" >
-				<img :alt="`${user.name.first} ${user.name.last} Image`"
-				:src="user.picture.large"/>
-
-				<article class="user-info is-verticle">
-					<p class="capitalize"><strong>{{ user.name.first }} {{ user.name.last }}</strong></p>
-					<p class="capitalize">Age: {{ user.dob.age }}</p>
-					<p class="capitalize">Gender: {{ user.gender }}</p>
-					<p>Email: {{ user.email }}</p>
-					<p>Phone: {{ user.phone }}</p>
-				</article>
+			<div class="columns has-text-right">
+					<button v-on:click="downloadCSV" class="button is-light is-size-6">
+						Export to CSV
+					</button>
 			</div>
 
-			<nav class="is-centered" role="navigation" aria-label="pagination">
-				<a v-on:click="getPrevPage" class="button is-light">Previous</a>
-				<a v-on:click="getNextPage" class="button is-light">Next page</a>
-			</nav>
+			<div class="columns is-centered">
+				<div class="tile is-parent is-vertical is-5">
+					<div class="tile is-child box" v-for="user in users" :key="user.id.value">
+						<img class="user-image" :alt="`${user.name.first} ${user.name.last} Image`"
+						:src="user.picture.large"/>
+
+						<article class="user-info">
+							<p class="capitalize"><strong>{{ user.name.first }} {{ user.name.last }}</strong></p>
+							<p class="capitalize">Age: {{ user.dob.age }}</p>
+							<p class="capitalize">Gender: {{ user.gender }}</p>
+							<p>Email: {{ user.email }}</p>
+							<p>Phone: {{ user.phone }}</p>
+						</article>
+					</div>
+				</div>
+			</div>
+
+			<div class="columns is-centered has-text-centered">
+				<nav class="is-centered" role="navigation" aria-label="pagination">
+					<button v-on:click="getPrevPage" class="button is-light is-size-6" :disabled="isDisabled">Previous</button>
+					<button v-on:click="getNextPage" class="button is-light is-size-6">Next page</button>
+				</nav>
+			</div>
 		</div>
 	</section>
 </template>
@@ -37,6 +45,11 @@ export default {
 			page: 1
 		}
 	},
+	computed: {
+		isDisabled() {
+			return this.page == 1;
+		}
+	},
 	methods: {
 		async getUsers() {
 			const { data: { results } } = await axios.get(`https://randomuser.me/api/?page=${this.page}&results=10&seed=random`)
@@ -46,7 +59,21 @@ export default {
 		async downloadCSV() {
 			const { data } = await axios.get(`https://randomuser.me/api/?page=${this.page}&results=10&seed=random&exc=login,nat,cell,registered,location&format=csv&dl`);
 
-			console.log(data); // eslint-disable-line
+			const a = document.createElement("a");
+			a.style.display = "none";
+			document.body.appendChild(a);
+
+			a.href = window.URL.createObjectURL(
+				new Blob([data], { type: "text/plain;charset=utf-8" })
+			);
+
+			a.setAttribute("download", "results.txt");
+
+			a.click();
+
+			window.URL.revokeObjectURL(a.href);
+			document.body.removeChild(a);
+
 		},
 		async getNextPage() {
 			this.page += 1;
@@ -60,6 +87,8 @@ export default {
 
 			if (this.page == 0) this.page = 1;
 
+			console.log("value of page is now:", this.page, "(prev)"); // eslint-disable-line
+
 			await this.getUsers();
 		},
 	},
@@ -70,7 +99,4 @@ export default {
 </script>
 
 <style scoped>
-.user-info {
-	padding-left: 1rem;
-}
 </style>

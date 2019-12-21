@@ -21,8 +21,12 @@
 </template>
 
 <style lang="scss">
+button,
 #app {
 	font-family: 'Quicksand', sans-serif;
+}
+
+#app {
 	display: flex;
     min-height: 100vh;
     flex-direction: column;

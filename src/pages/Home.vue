@@ -8,7 +8,7 @@
 				</article>
 
 				<div class="row is-full">
-					<router-link class="capitalize button is-light" to="/results">
+					<router-link class="capitalize button is-light is-size-6" to="/results">
 						View Results
 					</router-link>
 				</div>
