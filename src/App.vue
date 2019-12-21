@@ -3,7 +3,7 @@
 		<header class="header">
 			<nav class="container navbar">
 				<div class="navbar-brand">
-					<img alt="Logo" src="./assets/logo.png">
+					<img alt="Dir Logo" src="./assets/logo.png">
 				</div>
 			</nav>
 		</header>
