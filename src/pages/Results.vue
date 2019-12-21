@@ -1,19 +1,21 @@
 <template>
 	<section class="section">
 		<div class="container">
-			<div class="columns has-text-right">
-					<button v-on:click="downloadCSV" class="button is-light is-size-6">
-						Export to CSV
-					</button>
+			<div class="columns">
+				<button v-on:click="downloadCSV" class="button is-light is-size-6">
+					Export to CSV
+				</button>
 			</div>
 
 			<div class="columns is-centered">
-				<div class="tile is-parent is-vertical is-5">
-					<div class="tile is-child box" v-for="user in users" :key="user.id.value">
-						<img class="user-image" :alt="`${user.name.first} ${user.name.last} Image`"
-						:src="user.picture.large"/>
+				<div class="column tile is-parent is-vertical is-three-fifths">
+					<div class="columns tile is-child box has-text-centered-touch" v-for="user in users" :key="user.id.value">
+						<div class="column is-narrow">
+							<img :alt="`${user.name.first} ${user.name.last} Image`"
+							:src="user.picture.large"/>
+						</div>
 
-						<article class="user-info">
+						<article class="column">
 							<p class="capitalize"><strong>{{ user.name.first }} {{ user.name.last }}</strong></p>
 							<p class="capitalize">Age: {{ user.dob.age }}</p>
 							<p class="capitalize">Gender: {{ user.gender }}</p>
@@ -67,7 +69,7 @@ export default {
 				new Blob([data], { type: "text/plain;charset=utf-8" })
 			);
 
-			a.setAttribute("download", "results.txt");
+			a.setAttribute("download", "users.txt");
 
 			a.click();
 
@@ -86,8 +88,6 @@ export default {
 			this.page -= 1;
 
 			if (this.page == 0) this.page = 1;
-
-			console.log("value of page is now:", this.page, "(prev)"); // eslint-disable-line
 
 			await this.getUsers();
 		},
