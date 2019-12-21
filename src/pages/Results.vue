@@ -49,7 +49,7 @@ export default {
 			await this.getUsers();
 		},
 		async getUsers() {
-			const { data: { results } } = await axios.get(`https://randomuser.me/api/?page=${this.page}&results=10&seed=random`)
+			const { data: { results } } = await axios.get(`https://randomuser.me/api/?page=${this.page}&results=10&seed=random`);
 
 			this.users = results;
 		}

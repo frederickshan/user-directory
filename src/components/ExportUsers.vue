@@ -1,6 +1,6 @@
 <template>
 	<div class="columns">
-		<button v-on:click="exportCSV" class="button is-light is-size-6">
+		<button class="button is-light is-size-6" v-on:click="exportCSV">
 			Export to CSV
 		</button>
 	</div>
@@ -35,7 +35,6 @@ export default {
 
 			window.URL.revokeObjectURL(a.href);
 			document.body.removeChild(a);
-
 		}
 	}
 }
